@@ -150,10 +150,13 @@ def merge_fragment_to_pom(pom_file, fragment_file):
             dist_mgmt = root.find(f'{ns}distributionManagement')
             if dist_mgmt is not None:
                 idx = list(root).index(dist_mgmt) + 1
-                props_elem = ET.SubElement(root, 'properties')
+                # 使用 ET.Element 创建，然后插入，避免 ET.SubElement 自动添加
+                props_elem = ET.Element(f'{ns}properties')
                 root.insert(idx, props_elem)
             else:
-                props_elem = ET.SubElement(root, 'properties')
+                # 如果没有 distributionManagement，添加到末尾
+                props_elem = ET.Element(f'{ns}properties')
+                root.append(props_elem)
         
         # 合并属性
         for prop in props_frag:

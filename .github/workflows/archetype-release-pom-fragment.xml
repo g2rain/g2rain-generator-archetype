@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  此文件包含 archetype 发布到 Maven Central 所需的配置片段
+  在 release.yml 中会自动合并到生成的 archetype pom.xml
+-->
+<fragment>
+  <!-- 更新项目元信息 -->
+  <name>G2Rain Generator Archetype</name>
+  <description>A multi-module Maven Archetype project template based on Spring Boot. Use mvn archetype:create-from-project to create g2rain-generator-archetype, for quickly generating standardized enterprise-level Java application project structures.</description>
+  <url>https://github.com/g2rain/g2rain-generator-archetype</url>
+  
+  <!-- SCM 配置 -->
+  <scm>
+    <url>https://github.com/g2rain/g2rain-generator-archetype</url>
+    <connection>scm:git:https://github.com/g2rain/g2rain-generator-archetype.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/g2rain/g2rain-generator-archetype.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  
+  <!-- 开发者信息 -->
+  <developers>
+    <developer>
+      <name>Jagger</name>
+      <email>g2rain_developer@163.com</email>
+      <organization>G2rain</organization>
+      <organizationUrl>http://www.g2rain.com/</organizationUrl>
+    </developer>
+    <developer>
+      <id>alpha</id>
+      <name>Alpha</name>
+      <organization>G2rain</organization>
+      <organizationUrl>http://www.g2rain.com/</organizationUrl>
+    </developer>
+  </developers>
+  
+  <!-- License 配置 -->
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <!-- 仓库配置 -->
+  <distributionManagement>
+    <snapshotRepository>
+      <id>central</id>
+      <url>https://central.sonatype.com/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+  
+  <!-- Properties: 发布相关插件版本 -->
+  <properties>
+    <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
+    <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
+    <maven.gpg.plugin.version>3.2.7</maven.gpg.plugin.version>
+    <central.publishing.maven.plugin.version>0.9.0</central.publishing.maven.plugin.version>
+  </properties>
+  
+  <!-- Build 配置: 添加源码和 Javadoc 插件 -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>${maven.source.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven.javadoc.plugin.version}</version>
+        <configuration>
+          <release>21</release>
+          <encoding>UTF-8</encoding>
+          <doclint>none</doclint>
+          <additionalJOption>-Xdoclint:none</additionalJOption>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <!-- Release Profile: GPG 签名和 Central Publishing -->
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven.gpg.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <gpgArguments>
+                    <arg>--batch</arg>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                  <passphrase>${env.MAVEN_GPG_PASSPHRASE}</passphrase>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>${central.publishing.maven.plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <autoPublish>true</autoPublish>
+              <waitUntil>published</waitUntil>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</fragment>
+

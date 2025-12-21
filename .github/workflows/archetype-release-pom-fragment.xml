@@ -9,6 +9,12 @@
   <description>A multi-module Maven Archetype project template based on Spring Boot. Use mvn archetype:create-from-project to create g2rain-generator-archetype, for quickly generating standardized enterprise-level Java application project structures.</description>
   <url>https://github.com/g2rain/g2rain-generator-archetype</url>
   
+  <!-- Organization 配置 -->
+  <organization>
+    <name>G2rain</name>
+    <url>http://www.g2rain.com/</url>
+  </organization>
+  
   <!-- SCM 配置 -->
   <scm>
     <url>https://github.com/g2rain/g2rain-generator-archetype</url>
@@ -44,10 +50,12 @@
   
   <!-- 仓库配置 -->
   <distributionManagement>
+    <!-- Snapshot 仓库配置 -->
     <snapshotRepository>
       <id>central</id>
       <url>https://central.sonatype.com/content/repositories/snapshots</url>
     </snapshotRepository>
+    <!-- Release 仓库由 central-publishing-maven-plugin 自动处理，无需配置 -->
   </distributionManagement>
   
   <!-- Properties: 发布相关插件版本 -->
@@ -56,6 +64,8 @@
     <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
     <maven.gpg.plugin.version>3.2.7</maven.gpg.plugin.version>
     <central.publishing.maven.plugin.version>0.9.0</central.publishing.maven.plugin.version>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
   <!-- Build 配置: 添加源码和 Javadoc 插件 -->
@@ -79,8 +89,8 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>${maven.javadoc.plugin.version}</version>
         <configuration>
-          <release>21</release>
-          <encoding>UTF-8</encoding>
+          <release>${maven.compiler.target}</release>
+          <encoding>${project.build.sourceEncoding}</encoding>
           <doclint>none</doclint>
           <additionalJOption>-Xdoclint:none</additionalJOption>
         </configuration>
@@ -102,10 +112,11 @@
       <id>release</id>
       <build>
         <plugins>
+          <!-- GPG 签名插件：生成已签名的 jar / pom -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>${maven.gpg.plugin.version}</version>
+            <version>3.2.7</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -124,6 +135,8 @@
               </execution>
             </executions>
           </plugin>
+          <!-- Central Publishing Maven Plugin：使用新的 Central Publisher Portal -->
+          <!-- 参考文档：https://central.sonatype.org/publish/publish-portal-maven/ -->
           <plugin>
             <groupId>org.sonatype.central</groupId>
             <artifactId>central-publishing-maven-plugin</artifactId>
@@ -131,7 +144,9 @@
             <extensions>true</extensions>
             <configuration>
               <publishingServerId>central</publishingServerId>
+              <!-- 自动发布，无需手动干预（适合 CI 构建） -->
               <autoPublish>true</autoPublish>
+              <!-- 等待直到发布完成 -->
               <waitUntil>published</waitUntil>
             </configuration>
           </plugin>

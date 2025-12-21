@@ -97,6 +97,17 @@ def merge_fragment_to_pom(pom_file, fragment_file):
             target_parent.append(new_elem)
         return new_elem
     
+    # 更新或添加 organization
+    organization_frag = fragment_root.find('organization')
+    if organization_frag is not None:
+        organization_elem = root.find(f'{ns}organization')
+        if organization_elem is not None:
+            root.remove(organization_elem)
+        # 添加新的 organization（在 URL 之后）
+        url = root.find(f'{ns}url')
+        if url is not None:
+            copy_element_with_ns(organization_frag, root, url)
+    
     # 更新或添加 SCM
     scm_frag = fragment_root.find('scm')
     if scm_frag is not None:
@@ -207,12 +218,20 @@ def merge_fragment_to_pom(pom_file, fragment_file):
     if profiles_frag is not None:
         profiles_elem = root.find(f'{ns}profiles')
         if profiles_elem is None:
-            profiles_elem = ET.SubElement(root, 'profiles')
+            profiles_elem = ET.Element(f'{ns}profiles')
+            root.append(profiles_elem)
         
-        # 检查 release profile 是否存在
-        release_profile_frag = profiles_frag.find('.//profile') or profiles_frag.find(f'{ns}profile')
-        if release_profile_frag is not None:
-            pid_frag = release_profile_frag.find('.//id') or release_profile_frag.find(f'{ns}id')
+        # 查找 fragment 中的所有 profile（可能没有命名空间）
+        for profile_frag in list(profiles_frag):
+            # 查找 profile 的 id（处理有无命名空间的情况）
+            pid_frag = None
+            # 先尝试直接查找 id（无命名空间）
+            for child in profile_frag:
+                tag = child.tag if child.tag.startswith('{') else child.tag
+                if tag == 'id' or tag.endswith('}id'):
+                    pid_frag = child
+                    break
+            
             if pid_frag is not None and pid_frag.text == 'release':
                 # 查找现有的 release profile
                 found = False
@@ -220,11 +239,13 @@ def merge_fragment_to_pom(pom_file, fragment_file):
                     pid_existing = existing_profile.find(f'{ns}id')
                     if pid_existing is not None and pid_existing.text == 'release':
                         profiles_elem.remove(existing_profile)
-                        copy_element_with_ns(release_profile_frag, profiles_elem)
+                        copy_element_with_ns(profile_frag, profiles_elem)
                         found = True
+                        print(f"Replaced existing release profile")
                         break
                 if not found:
-                    copy_element_with_ns(release_profile_frag, profiles_elem)
+                    copy_element_with_ns(profile_frag, profiles_elem)
+                    print(f"Added release profile")
     
     # 保存更新后的 pom.xml
     tree.write(pom_file, encoding='utf-8', xml_declaration=True)

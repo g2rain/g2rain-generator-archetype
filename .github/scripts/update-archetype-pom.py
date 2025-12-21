@@ -42,6 +42,14 @@ def merge_fragment_to_pom(pom_file, fragment_file):
             temp_root.append(child)
         fragment_root = temp_root
     
+    # 更新 artifactId（如果 fragment 中指定了）
+    artifact_id_frag = fragment_root.find('artifactId')
+    if artifact_id_frag is not None:
+        artifact_id_elem = root.find(f'{ns}artifactId')
+        if artifact_id_elem is not None:
+            artifact_id_elem.text = artifact_id_frag.text
+            print(f"Updated artifactId to: {artifact_id_frag.text}")
+    
     # 更新 name
     name_frag = fragment_root.find('name')
     if name_frag is not None:

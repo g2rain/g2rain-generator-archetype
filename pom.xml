@@ -280,7 +280,7 @@
                 <configuration>
                     <!-- 指定archetype的基本信息（生成后会作为骨架的坐标） -->
                     <archetypeGroupId>com.g2rain</archetypeGroupId>
-                    <archetypeArtifactId>g2rain-example-archetype</archetypeArtifactId>
+                    <archetypeArtifactId>g2rain-generator-archetype</archetypeArtifactId>
                     <archetypeVersion>1.0.0</archetypeVersion>
                     <!-- 关键：传递包名参数，确保生成时识别 ${package} 和 ${packageInPathFormat} -->
                     <properties>

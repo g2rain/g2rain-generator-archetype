@@ -102,7 +102,7 @@ mvn install
 # 在父目录下执行（例如：D:\java\g2rain\）
 mvn archetype:generate \
   -DarchetypeGroupId=com.g2rain \
-  -DarchetypeArtifactId=g2rain-generator-archetype-archetype \
+  -DarchetypeArtifactId=g2rain-generator-archetype \
   -DarchetypeVersion=1.0.0 \
   -DgroupId=com.yourcompany \
   -DartifactId=your-project-name \
@@ -116,7 +116,7 @@ mvn archetype:generate \
 # 在父目录下执行
 mvn archetype:generate \
   -DarchetypeGroupId=com.g2rain \
-  -DarchetypeArtifactId=g2rain-generator-archetype-archetype \
+  -DarchetypeArtifactId=g2rain-generator-archetype \
   -DarchetypeVersion=1.0.0
 ```
 然后按提示输入项目信息。

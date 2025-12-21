@@ -5,6 +5,8 @@
 -->
 <fragment>
   <!-- 更新项目元信息 -->
+  <!-- 自定义 artifactId：移除 Maven 自动添加的 -archetype 后缀 -->
+  <artifactId>g2rain-generator-archetype</artifactId>
   <name>G2Rain Generator Archetype</name>
   <description>A multi-module Maven Archetype project template based on Spring Boot. Use mvn archetype:create-from-project to create g2rain-generator-archetype, for quickly generating standardized enterprise-level Java application project structures.</description>
   <url>https://github.com/g2rain/g2rain-generator-archetype</url>

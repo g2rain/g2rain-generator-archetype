@@ -42,9 +42,9 @@ g2rain-generator-archetype/
 
 ### 1. 编译脚手架g2rain-generator-archetype
 
-#### 1.1 编译验证项目
+#### 1.1 清理已生成的文件
 ```bash
-mvn clean install -DskipTests
+mvn clean
 ```
 
 #### 1.2 生成archetype配置文件
@@ -121,23 +121,91 @@ mvn archetype:generate \
 ```
 然后按提示输入项目信息。
 
-### 3. 配置数据库
+#### 方法3：在 IDE 中使用（IntelliJ IDEA / Eclipse）
 
-编辑生成的`codegen.properties`文件：
+**IntelliJ IDEA：**
+
+1. **更新 Maven 本地缓存**（首次使用前必须执行）：
+   ```bash
+   mvn archetype:crawl
+   ```
+   或者在 IDEA 的 Terminal 中执行：
+   ```bash
+   mvn archetype:generate -DarchetypeCatalog=remote
+   ```
+
+2. **刷新 Maven 索引**：
+   - 打开 `File` > `Settings` > `Build, Execution, Deployment` > `Maven` > `Repositories`
+   - 选择 `central` 仓库，点击 `Update` 按钮
+   - 或者在 `File` > `Settings` > `Build, Execution, Deployment` > `Build Tools` > `Maven` > `Importing` 中勾选 `Automatically download: Sources and Documentation`
+
+3. **创建新项目**：
+   - `File` > `New` > `Project`
+   - 选择 `Maven` > `Create from archetype`
+   - 点击 `Add Archetype...` 按钮
+   - 输入以下信息：
+     - **GroupId**: `com.g2rain`
+     - **ArtifactId**: `g2rain-generator-archetype`
+     - **Version**: `1.0.0`
+   - 点击 `OK`，然后选择刚添加的 archetype
+   - 点击 `Next`，输入项目信息（GroupId、ArtifactId、Version、Package 等）
+   - 点击 `Finish`
+
+4. **如果仍然找不到 archetype**：
+   - 在创建项目时，选择 `Maven` > `Create from archetype`，然后点击 `Add Archetype...`
+   - 手动输入坐标信息（如上所示）
+   - 或者使用命令行方式（方法1或方法2）
+
+**Eclipse：**
+
+1. **更新 Maven 本地缓存**（首次使用前必须执行）：
+   ```bash
+   mvn archetype:crawl
+   ```
+
+2. **创建新项目**：
+   - `File` > `New` > `Project...`
+   - 选择 `Maven` > `Maven Project`
+   - 点击 `Next`
+   - 选择 `Create a simple project (skip archetype selection)` 的复选框**不要勾选**
+   - 在 archetype 列表中找到 `com.g2rain:g2rain-generator-archetype:1.0.0`
+   - 如果找不到，点击 `Add Archetype...` 按钮，手动添加：
+     - **GroupId**: `com.g2rain`
+     - **ArtifactId**: `g2rain-generator-archetype`
+     - **Version**: `1.0.0`
+   - 点击 `Next`，输入项目信息
+   - 点击 `Finish`
+
+**常见问题：**
+
+- **Q: 在 IDE 中找不到 archetype？**
+  - A: 执行 `mvn archetype:crawl` 更新本地缓存，然后重启 IDE 并刷新 Maven 项目。
+
+- **Q: 提示无法下载 archetype？**
+  - A: 检查网络连接和 Maven 设置，确保可以访问 Maven Central。可以尝试使用命令行方式（方法1或方法2）。
+
+- **Q: 生成的项目结构不正确？**
+  - A: 确保使用最新版本（1.0.0），并检查 Maven 版本是否 >= 3.6.0。
+
+### 3. 配置数据库与代码生成
+
+编辑根目录的 `codegen.properties`（示例与实际文件保持一致）：
 
 ```properties
 # 数据库连接配置
-db.connectionURL=jdbc:mysql://localhost:3306/your_database?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-db.driverClass=com.mysql.cj.jdbc.Driver
-db.username=your_username
-db.password=your_password
+database.url=jdbc:mysql://localhost:3306/my_database?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+database.driver=com.mysql.cj.jdbc.Driver
+database.username=root
+database.password=root123456
 
-# 项目配置
-project.name=your-project-name
-project.basePackage=com.yourcompany.yourproject
+# 生成基础包名
+project.basePackage=com.g2rain.example
 
-# 需要生成代码的表名（逗号分隔）
-table.name=user,order_info
+# 需要生成的表（逗号分隔）
+database.tables=test
+
+# 是否允许覆盖已有文件
+tables.overwrite=false
 ```
 
 ### 4. 运行项目

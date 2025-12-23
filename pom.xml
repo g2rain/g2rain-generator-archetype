@@ -16,7 +16,7 @@
     <version>${revision}</version>
     <packaging>pom</packaging>
 
-    <name>G2Rain Generator Archetype</name>
+    <name>g2rain-generator-archetype</name>
     <description>
         A multi-module Maven Archetype project template based on Spring Boot.
         Use mvn archetype:create-from-project to create g2rain-generator-archetype,
@@ -77,7 +77,7 @@
     </modules>
 
     <properties>
-        <revision>1.0.0</revision>
+        <revision>1.0.1</revision>
         <mybatis.version>4.0.0</mybatis.version>
         <pagehelper.version>2.1.1</pagehelper.version>
         <mysql.version>9.5.0</mysql.version>

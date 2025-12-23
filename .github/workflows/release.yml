@@ -81,6 +81,11 @@ jobs:
         run: |
           mvn archetype:create-from-project
 
+      - name: Clean archetype metadata
+        run: |
+          python3 .github/scripts/clean-archetype-metadata.py \
+            target/generated-sources/archetype/src/main/resources/META-INF/maven/archetype-metadata.xml
+
       - name: Update archetype pom.xml with release configuration
         run: |
           python3 .github/scripts/update-archetype-pom.py \

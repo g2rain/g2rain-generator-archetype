@@ -60,7 +60,7 @@ mvn com.g2rain:g2rain-generator-maven-plugin:1.0.1:generate
 指定配置文件路径或表名：
 
 ```bash
-mvn com.g2rain:g2rain-generator-maven-plugin:1.0.0:generate ^
+mvn com.g2rain:g2rain-generator-maven-plugin:1.0.1:generate ^
   -Dconfig.file=./codegen.properties ^
   -Ddatabase.tables=user,order_info
 ```

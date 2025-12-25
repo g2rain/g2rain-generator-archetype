@@ -17,7 +17,7 @@
     <plugin>
       <groupId>com.g2rain</groupId>
       <artifactId>g2rain-generator-maven-plugin</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
       <!-- 请使用最新的版本 -->
     </plugin>
   </plugins>
@@ -54,7 +54,7 @@ tables.overwrite=false
 在项目根目录运行（默认读取 `codegen.properties`）：
 
 ```bash
-mvn com.g2rain:g2rain-generator-maven-plugin:1.0.0:generate
+mvn com.g2rain:g2rain-generator-maven-plugin:1.0.1:generate
 ```
 
 指定配置文件路径或表名：

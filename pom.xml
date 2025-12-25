@@ -77,13 +77,13 @@
     </modules>
 
     <properties>
-        <revision>1.0.1</revision>
+        <revision>1.0.2</revision>
         <mybatis.version>4.0.0</mybatis.version>
         <pagehelper.version>2.1.1</pagehelper.version>
         <mysql.version>9.5.0</mysql.version>
         <mapstruct.version>1.6.3</mapstruct.version>
-        <g2rain.common.version>1.0.0</g2rain.common.version>
-        <g2rain.generator.version>1.0.0</g2rain.generator.version>
+        <g2rain.common.version>1.0.1</g2rain.common.version>
+        <g2rain.generator.version>1.0.1</g2rain.generator.version>
         <flatten.maven.plugin.version>1.7.3</flatten.maven.plugin.version>
         <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
         <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
@@ -281,7 +281,7 @@
                     <!-- 指定archetype的基本信息（生成后会作为骨架的坐标） -->
                     <archetypeGroupId>com.g2rain</archetypeGroupId>
                     <archetypeArtifactId>g2rain-generator-archetype</archetypeArtifactId>
-                    <archetypeVersion>1.0.0</archetypeVersion>
+                    <archetypeVersion>${revision}</archetypeVersion>
                     <!-- 关键：传递包名参数，确保生成时识别 ${package} 和 ${packageInPathFormat} -->
                     <properties>
                         <!-- 设置默认包名（可选，若未通过-Dpackage指定则用此值） -->

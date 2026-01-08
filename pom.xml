@@ -77,13 +77,13 @@
     </modules>
 
     <properties>
-        <revision>1.0.2</revision>
+        <revision>1.0.3</revision>
         <mybatis.version>4.0.0</mybatis.version>
         <pagehelper.version>2.1.1</pagehelper.version>
         <mysql.version>9.5.0</mysql.version>
         <mapstruct.version>1.6.3</mapstruct.version>
-        <g2rain.common.version>1.0.1</g2rain.common.version>
-        <g2rain.generator.version>1.0.1</g2rain.generator.version>
+        <g2rain.common.version>1.0.2</g2rain.common.version>
+        <g2rain.generator.version>1.0.2</g2rain.generator.version>
         <flatten.maven.plugin.version>1.7.3</flatten.maven.plugin.version>
         <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
         <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>

@@ -103,7 +103,7 @@ mvn install
 mvn archetype:generate \
   -DarchetypeGroupId=com.g2rain \
   -DarchetypeArtifactId=g2rain-generator-archetype \
-  -DarchetypeVersion=1.0.2 \
+  -DarchetypeVersion=1.0.3 \
   -DgroupId=com.yourcompany \
   -DartifactId=your-project-name \
   -Dversion=1.0.0 \
@@ -117,7 +117,7 @@ mvn archetype:generate \
 mvn archetype:generate \
   -DarchetypeGroupId=com.g2rain \
   -DarchetypeArtifactId=g2rain-generator-archetype \
-  -DarchetypeVersion=1.0.2
+  -DarchetypeVersion=1.0.3
 ```
 然后按提示输入项目信息。
 
@@ -146,7 +146,7 @@ mvn archetype:generate \
    - 输入以下信息：
      - **GroupId**: `com.g2rain`
      - **ArtifactId**: `g2rain-generator-archetype`
-     - **Version**: `1.0.2`
+     - **Version**: `1.0.3`
    - 点击 `OK`，然后选择刚添加的 archetype
    - 点击 `Next`，输入项目信息（GroupId、ArtifactId、Version、Package 等）
    - 点击 `Finish`
@@ -168,11 +168,11 @@ mvn archetype:generate \
    - 选择 `Maven` > `Maven Project`
    - 点击 `Next`
    - 选择 `Create a simple project (skip archetype selection)` 的复选框**不要勾选**
-   - 在 archetype 列表中找到 `com.g2rain:g2rain-generator-archetype:1.0.2`
+   - 在 archetype 列表中找到 `com.g2rain:g2rain-generator-archetype:1.0.3`
    - 如果找不到，点击 `Add Archetype...` 按钮，手动添加：
      - **GroupId**: `com.g2rain`
      - **ArtifactId**: `g2rain-generator-archetype`
-     - **Version**: `1.0.2`
+     - **Version**: `1.0.3`
    - 点击 `Next`，输入项目信息
    - 点击 `Finish`
 
@@ -185,7 +185,7 @@ mvn archetype:generate \
   - A: 检查网络连接和 Maven 设置，确保可以访问 Maven Central。可以尝试使用命令行方式（方法1或方法2）。
 
 - **Q: 生成的项目结构不正确？**
-  - A: 确保使用最新版本（1.0.2），并检查 Maven 版本是否 >= 3.6.0。
+  - A: 确保使用最新版本（1.0.3），并检查 Maven 版本是否 >= 3.6.0。
 
 ### 3. 配置数据库与代码生成
 
@@ -293,6 +293,7 @@ mvn clean compile -X
 
 - **1.0.0**: 初始版本，支持多模块Spring Boot项目生成
 - **1.0.2**: 修订版本，升级代码生成jar的版本以及common的版本
+- **1.0.3**: 修订版本，新增SpringMVC的参数解析器, 解析PageSelectListDto
 
 ## 贡献指南
 

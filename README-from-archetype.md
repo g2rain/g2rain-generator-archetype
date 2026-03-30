@@ -3,7 +3,7 @@
 本项目由 `g2rain-generator-archetype` 生成，内置多模块结构（`-api`、`-biz`、`-startup`）。建议按以下步骤快速定制并生成 CRUD 代码。
 
 ## 1. 前置要求
-- Java 21+
+- Java 25+
 - Maven 3.6+
 - MySQL 8.0+（或其他 JDBC 数据库）
 
@@ -17,7 +17,7 @@
     <plugin>
       <groupId>com.g2rain</groupId>
       <artifactId>g2rain-generator-maven-plugin</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.3</version>
       <!-- 请使用最新的版本 -->
     </plugin>
   </plugins>
@@ -54,13 +54,13 @@ tables.overwrite=false
 在项目根目录运行（默认读取 `codegen.properties`）：
 
 ```bash
-mvn com.g2rain:g2rain-generator-maven-plugin:1.0.2:generate
+mvn com.g2rain:g2rain-generator-maven-plugin:1.0.3:generate
 ```
 
 指定配置文件路径或表名：
 
 ```bash
-mvn com.g2rain:g2rain-generator-maven-plugin:1.0.2:generate ^
+mvn com.g2rain:g2rain-generator-maven-plugin:1.0.3:generate ^
   -Dconfig.file=./codegen.properties ^
   -Ddatabase.tables=user,order_info
 ```

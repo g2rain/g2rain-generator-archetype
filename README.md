@@ -1,5 +1,13 @@
 # G2Rain Generator Archetype
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.g2rain/g2rain-generator-archetype.svg)](https://search.maven.org/artifact/com.g2rain/g2rain-generator-archetype)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Java Version](https://img.shields.io/badge/Java-25+-orange.svg)](https://openjdk.java.net/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/g2rain/g2rain-generator-archetype/maven.yml?branch=main)](https://github.com/g2rain/g2rain-generator-archetype/actions)
+[![Quality Gate](https://img.shields.io/sonar/quality_gate/g/g2rain/g2rain-generator-archetype)](https://sonarcloud.io/project/overview?id=g2rain_generator_archetype)
+
+---
+
 这是一个基于Spring Boot的多模块Maven Archetype项目模板，使用mvn archetype:create-from-project可以创建g2rain-generator-archetype，用于快速生成标准化的企业级Java应用项目结构。
 
 ## 项目结构
@@ -32,7 +40,7 @@ g2rain-generator-archetype/
 
 ## 技术栈
 
-- **Java**: 21
+- **Java**: 25
 - **Spring Boot**: 4.0.1
 - **Maven**: 3.x
 - **数据库**: MySQL 8.0+
@@ -317,4 +325,4 @@ mvn clean compile -X
 
 ---
 
-**注意**: 使用前请确保已安装Java 21和Maven 3.x环境。
+**注意**: 使用前请确保已安装Java 25和Maven 3.x环境。

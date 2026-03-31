@@ -81,7 +81,7 @@
         <mybatis.version>4.0.0</mybatis.version>
         <mysql.version>9.5.0</mysql.version>
         <mapstruct.version>1.6.3</mapstruct.version>
-        <g2rain.common.version>1.0.3-SNAPSHOT</g2rain.common.version>
+        <g2rain.common.version>1.0.3</g2rain.common.version>
         <g2rain.starter.mybatis.pagination.version>1.0.2</g2rain.starter.mybatis.pagination.version>
         <g2rain.generator.version>1.0.2</g2rain.generator.version>
         <flatten.maven.plugin.version>1.7.3</flatten.maven.plugin.version>
